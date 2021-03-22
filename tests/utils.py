@@ -78,6 +78,7 @@ good_file_names_list = [
     '32bit_new.exe',  # signed with current valid key
     '2019-06-64bit.exe', # cert valid since bug 1554767
     '2020-05-32bit.exe', # cert valid since bug 1634577
+    'FxSetup-87.0b2.exe',  # signed with sha2 timestamp issue 89
 ]
 
 
@@ -112,14 +113,9 @@ def two_verbose():
     os.environ['VERBOSE'] = '2'
 
 
-def true_verbose():
-    os.environ['VERBOSE'] = 'True'
-
-
 set_verbose_true_list = [
     one_verbose,
     two_verbose,
-    true_verbose
 ]
 
 
@@ -168,7 +164,7 @@ def upload_file(bucket, filename, key_name=None):
     if not key_name:
         # if a keyname isn't specified, build one
         key_name = filename.replace(' ', '+')
-    bucket.put_object(Body=open(fname, 'r'), Key=key_name)
+    bucket.put_object(Body=open(fname, 'rb'), Key=key_name)
     return (bucket_name, key_name)
 
 
