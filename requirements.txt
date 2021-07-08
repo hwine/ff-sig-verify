@@ -1,0 +1,3 @@
+fleece  ##  ==0.15.1
+# must not install fx-sig-verify here, as that breaks CI
+# -e .  # fx-sig-verify itself
